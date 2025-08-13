@@ -18,12 +18,10 @@ class ApiService {
       final List<dynamic> restaurantsJson = parsed['restaurants'];
       return restaurantsJson.map((json) => Restaurant.fromJson(json)).toList();
     } else {
-      // TAMBAHKAN BLOK INI
       throw Exception('Gagal memuat daftar restoran');
     }
   }
 
-  // TAMBAHKAN FUNGSI INI
   Future<List<Restaurant>> searchRestaurants(String query) async {
     final response = await http.get(Uri.parse('${_baseUrl}search?q=$query'));
     if (response.statusCode == 200) {
@@ -35,7 +33,24 @@ class ApiService {
     }
   }
 
-  // TAMBAHKAN METHOD DI BAWAH INI
+  Future<bool> postReview({
+    required String id,
+    required String name,
+    required String review,
+  }) async {
+    final response = await http.post(
+      Uri.parse('${_baseUrl}review'),
+      headers: <String, String>{'Content-Type': 'application/json; charset=UTF--urlencoded'},
+      body: jsonEncode(<String, String>{'id': id, 'name': name, 'review': review}),
+    );
+
+    if (response.statusCode == 201) {
+      return true;
+    } else {
+      throw Exception('Gagal mengirim review.');
+    }
+  }
+
   Future<RestaurantDetail> getRestaurantDetail(String id) async {
     final response = await http.get(Uri.parse(_baseUrl + _detailEndpoint + id));
 

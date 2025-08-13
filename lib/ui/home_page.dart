@@ -5,16 +5,13 @@ import 'package:resto_app/provider/result_state.dart';
 import 'package:resto_app/provider/theme_provider.dart';
 import 'package:resto_app/ui/search_page.dart';
 
-// Ubah menjadi StatelessWidget karena state dikelola oleh Provider
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
   // Widget untuk membangun daftar restoran
   Widget _buildList(BuildContext context) {
-    // Gunakan Consumer untuk mendapatkan data dari RestaurantProvider
     return Consumer<RestaurantProvider>(
       builder: (context, provider, _) {
-        // Periksa state dari provider
         switch (provider.state) {
           case ResultState.loading:
             return const Center(child: CircularProgressIndicator());

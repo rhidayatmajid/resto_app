@@ -37,7 +37,6 @@ class SearchPage extends StatelessWidget {
                     return ListView.builder(
                       itemCount: provider.result.length,
                       itemBuilder: (context, index) {
-                        // Menggunakan widget CardRestaurant yang baru
                         return CardRestaurant(restaurant: provider.result[index]);
                       },
                     );
@@ -55,7 +54,6 @@ class SearchPage extends StatelessWidget {
 }
 
 // WIDGET BARU UNTUK MENAMPILKAN ITEM RESTORAN
-// Widget ini bisa dipindahkan ke file sendiri agar bisa diimpor di mana saja.
 class CardRestaurant extends StatelessWidget {
   final Restaurant restaurant;
 
